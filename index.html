@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#111a1b"><meta name="description" content="ASTRA Coastal Rush. A sunset coastal time attack. Find your line, chase the last light, and beat your best.">
+<title>ASTRA — Coastal Rush</title><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css?v=1.1">
+</head>
+<body>
+<main id="game" aria-label="ASTRA Coastal Rush racing game">
+  <div id="viewport"></div><div class="vignette"></div><div id="boostFx"></div>
+  <header>
+    <a class="wordmark" href="./" aria-label="ASTRA home">ΛSTRΛ<span>DRIVING, UNFILTERED.</span></a>
+    <div class="event-brand"><i></i><span>COASTAL RUSH<small>GOLDEN HOUR CIRCUIT</small></span></div>
+    <nav><button id="soundBtn" class="icon-btn" aria-label="Enable sound" title="Sound (M)"><span id="soundIcon">♪</span><span id="soundLabel">SOUND OFF</span></button><button id="pauseBtn" class="icon-btn" aria-label="Pause game" title="Pause (Esc)"><span>Ⅱ</span><span>PAUSE</span></button></nav>
+  </header>
+  <div id="raceHud" class="race-hud hidden">
+    <section class="timing"><div class="overline">TIME ATTACK <span class="live-dot"></span></div><div class="time" id="time">00:00.000</div><div class="split"><span>BEST</span><b id="bestTime">— — : — —</b></div><div class="lap-row"><div><small>LAP</small><strong id="lap">01 <em>/ 02</em></strong></div><div><small>CHECKPOINT</small><strong id="checkpoint">01 <em>/ 12</em></strong></div></div></section>
+    <section class="route-prompt"><span class="route-arrow" id="routeArrow">↑</span><div><small id="nextLabel">NEXT CHECKPOINT</small><strong id="distance">150 m</strong></div></section>
+    <div class="progress-track"><i id="progress"></i></div>
+  </div>
+  <section id="intro" class="intro">
+    <div class="edition"><span>01</span> THE SUNSET SERIES <i></i> TIME ATTACK</div>
+    <h1>CHASE THE<br><em>LAST LIGHT.</em></h1>
+    <p>A stretch of open coast. A machine that comes alive.<br>Two laps. One perfect run.</p>
+    <div class="event-stats"><div><strong id="trackLength">3.4<small> KM</small></strong><span>TOTAL DISTANCE</span></div><div><strong>02</strong><span>LAPS TO CONQUER</span></div><div><strong>140<small> SEC</small></strong><span>GOLD TARGET</span></div></div>
+    <button id="startBtn" class="primary" disabled>LOADING COASTLINE… <span>↗</span></button>
+    <div class="start-note desktop-note"><kbd>↵</kbd> TO START <span>•</span> HEADPHONES RECOMMENDED</div><div class="start-note mobile-note">TOUCH TO DRIVE <span>•</span> LANDSCAPE RECOMMENDED</div>
+  </section>
+  <div id="carTag" class="car-tag"><span>YOUR RIDE</span><strong>ASTRA R-01</strong><small>420 HP <i>·</i> REAR-WHEEL DRIVE <i>·</i> 6-SPEED</small><div class="paint"><i></i> GLACIER MINT</div></div>
+  <div id="countdown" class="countdown hidden" aria-live="polite"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div class="bottom-left"><div id="mapPanel" class="map-panel"><div class="map-label"><span>THE COASTLINE</span><span id="mapMode">ROUTE PREVIEW</span></div><canvas id="minimap" width="480" height="320" aria-label="Circuit minimap with your position and next checkpoint"></canvas><div class="map-caption"><i></i> <span id="sectorLabel">FESTIVAL STRAIGHT</span><b>N ↑</b></div></div></div>
+  <section id="speedHud" class="speed-hud hidden" aria-label="Vehicle instruments"><div class="driving-state" id="drivingState">GRIP</div><svg class="speed-arc" viewBox="0 0 260 180" aria-hidden="true"><path class="arc-bg" d="M 26 156 A 112 112 0 1 1 234 156"/><path id="revArc" d="M 26 156 A 112 112 0 1 1 234 156" pathLength="100"/><g class="ticks"><path d="M30 139L39 135 M25 111L35 111 M35 81L44 85 M53 56L60 63 M80 39L84 49 M110 30L111 40 M142 30L141 40 M174 39L170 49 M202 56L195 63 M222 81L213 85 M235 111L225 111 M230 139L221 135"/></g></svg><div class="speed-readout"><span id="gear">N</span><strong id="speed">000</strong><small>KM/H</small></div><div class="nitro-label"><span>NITRO <kbd>SHIFT</kbd></span><span id="nitroPct">100%</span></div><div class="nitro-track"><i id="nitroBar"></i></div><div class="camera-indicator" id="cameraLabel">C · CHASE CAMERA</div></section>
+  <footer id="controlBar"><div class="control"><span class="keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span>DRIVE</span></div><div class="control"><kbd>SPACE</kbd><span>HANDBRAKE</span></div><div class="control"><kbd>SHIFT</kbd><span>NITRO</span></div><div class="control"><kbd>C</kbd><span>CAMERA</span></div><div class="control"><kbd>F</kbd><span>RECOVER</span></div><div class="control"><kbd>R</kbd><span>RESTART</span></div><span class="build-label">BROWSER PROTOTYPE <i>01.1</i></span></footer>
+  <section id="touchControls" class="touch-controls hidden" aria-label="Touch driving controls">
+    <div class="touch-tools"><button id="touchCamera" aria-label="Change camera">CAM</button><button id="touchRecover" aria-label="Recover car">RESET</button><button id="fullscreenBtn" aria-label="Toggle fullscreen">⛶</button></div>
+    <div class="touch-steering"><button id="touchLeft" class="hold-btn steer-btn" aria-label="Steer left" aria-pressed="false">◀</button><button id="touchRight" class="hold-btn steer-btn" aria-label="Steer right" aria-pressed="false">▶</button></div>
+    <div class="touch-pedals"><button id="touchNitro" class="hold-btn nitro-btn" aria-label="Nitro" aria-pressed="false">NITRO</button><div><button id="touchBrake" class="hold-btn brake-btn" aria-label="Brake and reverse" aria-pressed="false">BRAKE<small>REVERSE</small></button><button id="touchThrottle" class="hold-btn gas-btn" aria-label="Accelerate" aria-pressed="false">GAS<span>▲</span></button></div></div>
+    <button id="touchHandbrake" class="hold-btn handbrake-btn" aria-label="Handbrake" aria-pressed="false">DRIFT</button>
+  </section>
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><span id="modalEyebrow" class="eyebrow">TAKE A BREATHER</span><h2 id="modalTitle">ON HOLD.</h2><p id="modalDescription">The coast can wait.</p><div id="results" class="results hidden"></div><div id="settings"><label>CAMERA <select id="cameraSelect"><option value="0">Chase</option><option value="1">Hood</option><option value="2">Wide chase</option></select></label><label>GRAPHICS <select id="qualitySelect"><option value="high">High</option><option value="balanced" selected>Balanced</option><option value="low">Performance</option></select></label><label>TOUCH CONTROLS <select id="touchSelect"><option value="auto" selected>Auto</option><option value="on">On</option><option value="off">Off</option></select></label><label>STEERING ASSIST <select id="assistSelect"><option value="on" selected>On · recommended</option><option value="off">Off · more oversteer</option></select></label><p class="modal-hint desktop-help">W / ↑ accelerate · S / ↓ brake & reverse<br>A / ← left · D / → right · B look back · M sound<br>Pass every gate in order. F recovers with a 3 s penalty.</p><p class="modal-hint touch-help">Hold ◀ / ▶ to steer and GAS to accelerate.<br>BRAKE slows down; keep holding to reverse.<br>Hold NITRO for boost, DRIFT for the handbrake.<br>CAM changes view. RESET recovers with +3 s.</p></div><button id="resumeBtn" class="primary">BACK TO THE COAST <span>↗</span></button><button id="restartBtn" class="secondary">RESTART EVENT</button><button id="menuBtn" class="text-btn">RETURN TO GARAGE</button></div></div>
+  <div id="error" class="error hidden"><h2>LET’S GET YOU DRIVING.</h2><p id="errorText">This prototype requires WebGL 2. Please try an up-to-date browser with graphics acceleration enabled.</p><button class="primary" onclick="location.reload()">TRY AGAIN ↗</button></div>
+</main>
+<script type="module" src="./game.js?v=1.1"></script>
+</body></html>
